@@ -36,6 +36,33 @@
                         </article>
                     <hr/>
                     </section>
+                    <section>
+                        <h3><time datetime="2017-04-20">04/20/2017</time></h3>
+                        <article>
+                            <h4>Closures</h4>
+                            <p>Closures allow variables to be created, modified, and destroyed within its scope without being affected by code outside its scope.<br>
+                               This function </p>
+                            <pre><code>
+                                // Creates object in memory
+                                var a = {};
+                                // for loop creates var x points it 0, 
+                                for(var i = 0; i < 3; i++){
+                                  //Creates a function in memory, Functions should not be within a loop, move the function outside the loop.
+                                  (function (j){
+                                   a[j] = function(){ // Creates another function in memory, sets j as 0, a sub 0
+                                     return (j)       // Repeats the process for when i is 1, 2 then stops at 3. Returns j when called.
+                                   };
+                                  }) (i); // Calls the outer function in memory (function (j){, a call object is created that contains arguments passed to the function which would be i then translated to j and it gets its own copy of i. Then the innner function is run a[j] = function(){. 
+                                };
+                            </code></pre>
+                            <h5>Resources</h5>
+                            <ul>
+                                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">MDN - Closures</a></li>
+                                <li><a href="https://app.pluralsight.com/player?course=advanced-js-jquery-pure-dom-scripting-fundamentals&author=justin-meyer&name=advanced-js-jquery-pure-dom-scripting-fundamentals-m4&clip=3">PLURALSIGHT - Closure Gotchas</a></li>
+                            </ul>
+                        </article>
+                    <hr/>
+                    </section> 
                 </div>
             </div>
         </main>
