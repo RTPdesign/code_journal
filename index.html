@@ -41,7 +41,7 @@
                         <article>
                             <h4>Closures</h4>
                             <p>Closures allow variables to be created, modified, and destroyed within its scope without being affected by code outside its scope.<br>
-                               This function </p>
+                               This example creates functions within an incrementing for loop to return passed values when called.</p>
                             <pre><code>
                                 // Creates object in memory
                                 var a = {};
@@ -62,7 +62,52 @@
                             </ul>
                         </article>
                     <hr/>
-                    </section> 
+                    </section>
+                     <section>
+                        <h3><time datetime="2017-04-20">04/20/2017</time></h3>
+                        <article>
+                            <h4>Hoisting</h4>
+                            <p>Hoisting refers to how JS executes variable and function declarations by putting them into memory during the compile phase, but they stay exactly where you typed them in your code. Putting function declarations into the memory before it executes any code segment, allows functions to be used before declared in the code.<br>
+                               This is a good example of hoisting because the function is called, passing two values, before it's created.</p>
+                            <pre><code>
+                                // Sets sum by running the function before its created, passes two values to the function and setting the results of the function to sum.
+                                var sum = calculate(1,2);
+                                    // Creates a function with two parameters, returns the sum 
+                                    function calculate(x, y) {
+                                      return x + y;
+                                    }
+                            </code></pre>
+                            <h5>Resources</h5>
+                            <ul>
+                                <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting">MDN - Hoisting</a></li>
+                            </ul>
+                        </article>
+                    <hr/>
+                    </section>
+                     <section>
+                        <h3><time datetime="2017-04-20">04/20/2017</time></h3>
+                        <article>
+                            <h4>'use strict';</h4>
+                            <p>'use strict'; is a literal expression to indicate that the code should be executed in "strict mode" and can't do things like use undeclared variables. It can be declared globally at the beginning of a script or within individual functions.<br>
+                               Thi</p>
+                            <pre><code>
+                                // This will not cause an error because use strict is within the function not globally.
+                                x = 3.14;
+                                myFunction();
+
+                                function myFunction() {
+                                    "use strict";
+                                        y = 3.14;   // This will cause an error because y is not declared.
+                                }
+                            </code></pre>
+                            <h5>Resources</h5>
+                            <ul>
+                                <li><a href="https://www.w3schools.com/js/js_strict.asp">W3Schools - Use Strict</a></li>
+                                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">MDN - Strict mode</a></li>
+                            </ul>
+                        </article>
+                    <hr/>
+                    </section>    
                 </div>
             </div>
         </main>
