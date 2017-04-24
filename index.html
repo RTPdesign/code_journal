@@ -67,7 +67,8 @@
                         <h3><time datetime="2017-04-20">04/20/2017</time></h3>
                         <article>
                             <h4>Hoisting</h4>
-                            <p>Hoisting refers to how JS executes variable and function declarations by putting them into memory during the compile phase, but they stay exactly where you typed them in your code. Putting function declarations into the memory before it executes any code segment, allows functions to be used before declared in the code.<br>
+                            <p>Hoisting refers to how JS executes variable and function declarations by putting them into memory during the compile phase, but they stay exactly where you typed them in your code. 
+                               Putting function declarations into the memory before it executes any code segment, allows functions to be used before declared in the code.<br>
                                This is a good example of hoisting because the function is called, passing two values, before it's created.</p>
                             <pre><code>
                                 // Sets sum by running the function before its created, passes two values to the function and setting the results of the function to sum.
@@ -107,7 +108,109 @@
                             </ul>
                         </article>
                     <hr/>
-                    </section>    
+                    </section>
+                    <section>
+                        <h3><time datetime="2017-04-23">04/23/2017</time></h3>
+                        <article>
+                            <h4>class</h4>
+                            <p>JavaScript classes introduced in ES5 are syntactical sugar over JavaScript's existing prototype-based inheritance. The class syntax is not introducing a new object-oriented inheritance model to JavaScript. 
+                               JavaScript classes provide a much simpler and clearer syntax to create objects and deal with inheritance.<br>
+                               One way to define a class is using a class declaration. To declare a class, you use the class keyword with the name of the class ("Rectangle" here).</p>
+                            <pre><code>
+                                // Declares Class Rectangle.
+                                class Rectangle {
+                                  constructor(height, width) { // The constructor method is a special method for creating and initializing an object created with a class.
+                                    this.height = height;      // There can only be one special method with the name "constructor" in a class. A SyntaxError will be thrown if the class contains more than one occurrence of a constructor method.
+                                    this.width = width;        // A constructor can use the super keyword to call the constructor of a parent class.
+                                  }
+                                }
+                            </code></pre>
+                            <h5>Resources</h5>
+                            <ul>
+                                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">MDN - Classes</a></li>
+                            </ul>
+                        </article>
+                    <hr/>
+                    </section>
+                    <section>
+                        <h3><time datetime="2017-04-23">04/23/2017</time></h3>
+                        <article>
+                            <h4>this</h4>
+                            <p>The this keyword value is determined by how a function is called. It can't be set by assignment during execution, and it may be different each time the function is called. 
+                               ES5 introduced the bind method to set the value of a function's this regardless of how it's called, and ES2015 introduced arrow functions whose this is lexically scoped (it is set to the this value of the enclosing execution context).
+                               this behaves differently between strict mode and non-strict mode.<br>
+                               In the global execution context (outside of any function), this refers to the global object, whether in strict mode or not.
+                               Inside a function, the value of this depends on how the function is called.</p>
+                            <pre><code>
+                                // Since the following code is not in strict mode, and because the value of this is not set by the call, this will default to the global object.
+                                function f1() {
+                                  return this;
+                                }
+                                // In a browser:
+                                f1() === window; // The window is the global object in browsers
+
+                                // In Node:
+                                f1() === global;
+                                
+                                In strict mode, however, the value of this remains at whatever it was set to when entering the execution context, so, in the following case, this will default to undefined.
+                                function f2() {
+                                  'use strict'; // Indicates strict mode within the function
+                                  return this;
+                                }
+
+                                f2() === undefined;
+                            </code></pre>
+                            <h5>Resources</h5>
+                            <ul>
+                                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">MDN - this</a></li>
+                            </ul>
+                        </article>
+                    <hr/>
+                    </section>
+                     <section>
+                        <h3><time datetime="2017-04-23">04/23/2017</time></h3>
+                        <article>
+                            <h4>arrow functions</h4>
+                            <p>Arrow functions have a shorter syntax and don't bind its own this, arguments, super, or new.target. They are best suited for non-method functions, and can't be used as constructors.<br>
+                               Before arrow functions, every new function defined its own this value. An arrow function doesn't create its own this context, so this has its original meaning from the enclosing context.</p>
+                            <pre><code>
+                                function Person(){
+                                  this.age = 0;
+
+                                  setInterval(() => {
+                                    this.age++; // |this| properly refers to the person object
+                                  }, 1000);
+                                }
+                                var p = new Person();
+                            </code></pre>
+                            <h5>Resources</h5>
+                            <ul>
+                                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">MDN - Arrow functions</a></li>
+                            </ul>
+                        </article>
+                    <hr/>
+                    </section>
+                    <section>
+                        <h3><time datetime="2017-04-23">04/23/2017</time></h3>
+                        <article>
+                            <h4>es5 vs es6</h4>
+                            <p><b>Block Scope</b> - AES5 only had “function-level scope” (i.e. you wrap code in functions to create scope) and caused a lot of issues. ES6 provides “block”-level scoping(i.e curly-braces to scope) when we use “let” or “const” instead of “var”.<br>
+                               Prevents Duplicate Variable Declaration - ES6 doesn’t allow duplicate declaration of variables when we declare them using “let” or “const” in the same scope. This is very helpful in avoiding duplicate function expressions coming from different libraries.<br>
+                               Eliminates The Need For IIFE - In ES5, in cases like below, we had to use Immediately Invoked Function Expression (IIFE) to ensure we don’t not pollute or overwrite the global scope. In ES6, we can just use curly braces ({}) and use const or let to get the same effect.<br>
+                               Trivial To Use Functions In Loops - In ES5, if you had a function inside a loop (like for(var i = 0; i < 3; i++) {…}), and if that function tried to access the looping variable “i”, we’d be in trouble because of hoisting. In ES6, if you use “let”, you can use functions without any issue.<br>
+                               <b>this</b> - In ES5, “this” can vary based on “where” it is called and even “how” it is called and this causes problems. ES6 eliminates the problem by forcing the variable “this” to always point to the object where it is physically located within. Using the arrow function automatically makes it happen.<br>
+                               <b>arguments</b> - In ES5, “arguments” acts like an Array (i.e. it can be looped over), but is not an Array. So, all the Array functions like sort, slice and so on are not available.
+                                                 In ES6, you can use a new feature called “Rest” parameters. It’s represented with 3 dots and a name like …args. Rest parameters is an Array and so you can use all the Array functions.<br>
+                               <b>Classes</b> - Conceptually, there is no such thing as a “Class”(i.e. blueprint) in JS like it is in other OO languages like Java. People treat the “function” (aka “function constructors”) that creates Objects when we use the “new” keyword as Classes. ES6 new syntax allows you to define a class using a class declaration. To declare a class, you use the class keyword with the name of the class.<br>
+                               <b>Strict Mode</b> - (“use strict”) helps identify common issues (or “bad” parts) and also helps with “securing” JavaScript. In ES5, the Strict Mode is optional but in ES6, it’s needed for many ES6 features.</p>
+                            <h5>Resources</h5>
+                            <ul>
+                                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_2015_support_in_Mozilla">MDN - ECMAScript 2015</a></li>
+                                <li><a href="https://medium.freecodecamp.com/5-javascript-bad-parts-that-are-fixed-in-es6-c7c45d44fd81">freecodecamp - ES6</a></li>
+                            </ul>
+                        </article>
+                    <hr/>
+                    </section>
                 </div>
             </div>
         </main>
